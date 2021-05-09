@@ -1,10 +1,11 @@
 const mysql = require('mysql');
 const inquirer = require('inquirer');
-const db = require('./db/connection');
+const connection = require('./db/connection');
 
 
-db.connect((err) => {
+connection.connect((err) => {
     if (err) throw err;
+    console.log('Welcome to the Employee Tracker!')
     search();
   });
 
@@ -17,39 +18,113 @@ db.connect((err) => {
             choices: [
                 {
                     name: "View All Employees",
-                    //value: ""
+                    value: "View_All"
                 },
                 {
                     name: "Add Employee",
-                    //value: ""
+                    value: "Add_Employee"
                 },
                 {
                     name: "View All Departments",
-                    //value: ""
+                    value: "All_Departments"
                 },
                 {
                     name: "Add Dempartment",
-                    //value: ""
+                    value: "Add_Department"
                 },
                 {
                     name: "View All Roles",
-                    //value: ""
+                    value: "All_Roles"
                 },
                 {
                     name: "Add Role",
-                    //value: ""
+                    value: "Add_Role"
                 },
                 {
                     name: "Update Employee Role",
-                    //value: ""
+                    value: "Update_Role"
                 },
                 {
                     name: "Quit",
-                    //value: ""
+                    value: "Quit"
                 }
             ]
       })
       .then((answer) => {
-          console.log(answer);
+          console.log(answer.initial);
+          switch(answer.initial){
+                case "View_All":
+                    viewAllEmployees();
+                break;
+
+                case "Add_Employee":
+                    addEmployee();
+                break;
+
+                case "All_Departments":
+                    viewAllDepartments();
+                break;
+
+                case "Add_Department":
+                    addDepartment();
+                break;
+
+                case "All_Roles":
+                    viewAllRoles();
+                break;
+
+                case "Add_Role":
+                    addRole();
+                break;
+
+                case "Update_Role":
+                    updateRole();
+                break;
+
+                case "Quit":
+                    quit();
+                break;
+          }
       })
   }
+
+
+const viewAllEmployees = () => {
+    console.log('This function views all employees')
+    search();
+}
+
+const addEmployee = () => {
+    console.log('This function adds an employees')
+    search();
+}
+
+const viewAllDepartments = () => {
+    console.log('This function views all departments')
+    search();
+}
+
+const addDepartment = () => {
+    console.log('This function adds a department')
+    search();
+}
+
+const viewAllRoles = () => {
+    console.log('This function views all roles')
+    search();
+}
+
+const addRole = () => {
+    console.log('This function adds a role')
+    search();
+}
+
+const updateRole = () => {
+    console.log('This function updates a role')
+    search();
+}
+
+const quit = () => {
+    console.log('This function quits')
+    process.exit();
+}
