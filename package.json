@@ -4,6 +4,7 @@
   "description": "A command-line content management system that at a minimum allows the user to:   * Add departments, roles, employees    * View departments, roles, employees    * Update employee roles",
   "main": "employeetracker.js",
   "scripts": {
+    "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
