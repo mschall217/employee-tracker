@@ -5,10 +5,7 @@ const connection = mysql.createConnection({
 
   // Your port; if not 3306
   port: 3306,
-
-  // Your username
   user: 'root',
-
   // Be sure to update with your own MySQL password!
   password: '',
   database: 'employee_DB',
