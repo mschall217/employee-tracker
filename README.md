@@ -7,7 +7,6 @@ A command-line content management system that at a minimum allows the user to:  
   - [Installation](#installation)
   - [Usage](#usage)
   - [GIF](#gif)
-  - [Testing](#testing)
   - [Support](#support)
   - [Contributing](#contributing)
   - [License](#license)
@@ -19,16 +18,12 @@ A command-line content management system that at a minimum allows the user to:  
   
   ## Usage
   
-   
+   This program can be easily manipulated to work for any company. This program can access an employee database and allow the user to easily navigate through imporatnt information. Highly customizable this program is for any business!
 
   ## Gif 
 
   
-  
-  ## Testing
 
-  
-  
   ## Support
   
   Please [open an issue](https://github.com/mschall217/employee-tracker/issues/new) for support.
