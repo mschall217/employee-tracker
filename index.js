@@ -107,14 +107,15 @@ const addEmployee = () => {
 
 const viewAllDepartments = () => {
 	console.log("This function views all departments");
-    connection.query(
-        "",
+	connection.query(
+        `SELECT role.id, role.title, department.name AS department FROM department INNER JOIN role on role.department_id = department.id;`,
         function (err, res) {
 			if (err) throw err;
+            console.log("\n");
 			console.table(res);
+            search();
 		}
 	);
-	search();
 };
 
 const addDepartment = () => {
@@ -124,7 +125,7 @@ const addDepartment = () => {
 
 const viewAllRoles = () => {
 	console.log("This function views all roles");
-    connection.query("SELECT employee.first_name, employee.last_name, role.title, role.salary, department.name, CONCAT(e.first_name, ' ' ,e.last_name) AS Manager FROM employee INNER JOIN role on role.id = employee.role_id INNER JOIN department on department.id = role.department_id left join employee e on employee.manager_id = e.id;",
+    connection.query(`SELECT role.id, role.title, department.name AS department FROM department INNER JOIN role on role.department_id = department.id;`,
     function(err, res){if (err) throw err
         console.log('works')})
 };
