@@ -100,9 +100,49 @@ const viewAllEmployees = () => {
 	);
 };
 
+let roleChoices = []
+const selectRole = () => {
+    connection.query(`SELECT * FROM role`, function(err, res){
+        if(err) throw err
+        for(let r = 0; r<res.length; r++){
+            roleChoices.push(res[r].title)
+        }
+    })
+    return roleChoices;
+}
+
 const addEmployee = () => {
 	console.log("This function adds an employees");
-	search();
+    inquirer.prompt([
+        {
+            name: "first_name",
+            type: "input",
+            message: "Please enter their first name:"
+        },
+        {
+            name: "last_name",
+            type: "input",
+            message: "Please enter their last name:"
+        },
+        {
+            name: "role",
+            type: "list",
+            message: "what is their role?",
+            choices: selectRole()
+        },
+    ]).then(function(answers){
+        let roleID = selectRole().indexOf(answers.role)+1
+        connection.query(`INSERT INTO employee SET ?`, {
+            first_name: answers.first_name,
+            last_name: answers.last_name,
+            role_id: roleID
+        }, function(err){
+            if(err) throw err
+            console.table(answers)
+            search();
+        }
+        )
+    })
 };
 
 const viewAllDepartments = () => {
