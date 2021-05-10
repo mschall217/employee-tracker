@@ -1,9 +1,12 @@
 const mysql = require("mysql");
 const inquirer = require("inquirer");
 const connection = require("./db/connection");
+const logo = require('asciiart-logo');
 
 connection.connect((err) => {
-	if (err) throw err;
+	if (err) throw err
+    const logoTitle = logo({name: "Employee Tracker", font:"ANSI Shadow",color: "bold-green"}).render();
+    console.log(logoTitle)
 	console.log("Welcome to the Employee Tracker!");
 	search();
 });

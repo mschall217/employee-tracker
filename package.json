@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/mschall217/employee-tracker#readme",
   "dependencies": {
+    "asciiart-logo": "^0.2.6",
     "inquirer": "^8.0.0",
     "mysql": "^2.18.1",
     "util": "^0.12.3"
