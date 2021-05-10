@@ -140,8 +140,7 @@ const addEmployee = () => {
             if(err) throw err
             console.table(answers)
             search();
-        }
-        )
+        })
     })
 };
 
@@ -167,12 +166,53 @@ const viewAllRoles = () => {
 	console.log("This function views all roles");
     connection.query(`SELECT role.id, role.title, department.name AS department FROM department INNER JOIN role on role.department_id = department.id;`,
     function(err, res){if (err) throw err
-        console.log('works')})
+        console.log("\n");
+        console.table(res);
+        search();
+    })
 };
+let departmentChoices = [];
+const selectDepartment = () => {
+    connection.query(`SELECT * FROM department`, function(err, res){
+        if(err) throw err
+        for(let d = 0; d<res.length; d++){
+            departmentChoices.push(res[d].name)
+        }
+    })
+    return departmentChoices;
+}
 
 const addRole = () => {
 	console.log("This function adds a role");
-	search();
+    inquirer.prompt([
+        {
+            name: "title",
+            type: "input",
+            message: "What is the title of this role?"
+        },
+        {
+            name: "salary",
+            type: "input",
+            message: "What is the salary of this role"
+        },
+        {
+            name: "department",
+            type: "list",
+            message: "What department does this role belong to?",
+            choices: selectDepartment()
+        },
+    ]).then(function(answers){
+        let departmentID = selectDepartment().indexOf(answers.department)+1
+        connection.query(`INSERT INTO role SET ?`, {
+            title: answers.title,
+            salary: answers.salary,
+            department_id: departmentID
+        }, function(err){
+            if(err) throw err
+            console.table(answers)
+            search();
+        })
+    })
 };
 
 const updateRole = () => {
